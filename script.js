@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         message += `\n¡Gracias!`;
 
         // Replace with the actual seller's WhatsApp number
-        const whatsappNumber = '59173111977'; // CHANGE THIS: Replace with your WhatsApp number (country code + number, no + sign)
+        const whatsappNumber = '59177673615'; // CHANGE THIS: Replace with your WhatsApp number (country code + number, no + sign)
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     });
