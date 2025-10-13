@@ -187,9 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         // Hide other sections and show reservation form
+        document.querySelector('header').style.display = 'none';
         document.getElementById('home').style.display = 'none';
         document.getElementById('categories').style.display = 'none';
         document.getElementById('about').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
         reservationFormSection.style.display = 'block';
         window.scrollTo(0, 0); // Scroll to top
     });
@@ -280,10 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
         reservationFormSection.style.display = 'none';
 
         // Mostrar secciones principales
+        document.querySelector('header').style.display = 'block';
         document.getElementById('home').style.display = 'block';
         document.getElementById('categories').style.display = 'block';
         document.getElementById('about').style.display = 'block';
-        
+        document.querySelector('footer').style.display = 'block';
+
         // Hacer scroll al inicio
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
