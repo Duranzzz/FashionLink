@@ -27,58 +27,120 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Admin Login - FashionLink</title>
     <link rel="stylesheet" href="../../style.css"> <!-- Link to main style.css -->
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 20px;
         }
+
         .login-container {
             background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             width: 100%;
-            max-width: 400px;
+            max-width: 440px;
             text-align: center;
         }
+
         .login-container h2 {
-            margin-bottom: 20px;
-            color: #333;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            font-size: 2em;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
+
         .login-container label {
             display: block;
             text-align: left;
-            margin-bottom: 8px;
-            font-weight: bold;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 0.95em;
+            letter-spacing: 0.3px;
         }
+
         .login-container input[type="text"],
         .login-container input[type="password"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
             font-size: 1em;
+            background: #fafafa;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
+
+        .login-container input:focus {
+            border: 2px solid #1a1a1a;
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.05);
+        }
+
         .login-container button {
-            background-color: #e74c3c;
+            background-color: #1a1a1a;
             color: #fff;
             border: none;
-            padding: 10px 15px;
+            padding: 16px 24px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1.1em;
             width: 100%;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
         }
+
         .login-container button:hover {
-            background-color: #c0392b;
+            background-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
+
+        .login-container a.btn {
+            display: inline-block;
+            background: transparent;
+            color: #666;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            padding: 14px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .login-container a.btn:hover {
+            background: #f5f5f5;
+            border-color: #1a1a1a;
+            color: #1a1a1a;
+        }
+
         .error-message {
-            color: red;
-            margin-top: 10px;
+            background: #fee;
+            color: #c00;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 0.95em;
+            border: 1px solid #fcc;
         }
     </style>
 </head>
@@ -97,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($error): ?>
             <p class="error-message"><?php echo $error; ?></p>
         <?php endif; ?>
-        <a href="../../index.html" class="btn" style="background-color: #6c757d; margin-top: 15px; display: block; text-decoration: none; color: white;">Volver a la Tienda</a>
+        <a href="../../index.html" class="btn">Volver a la Tienda</a>
     </div>
 </body>
 </html>

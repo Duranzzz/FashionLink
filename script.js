@@ -109,6 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`${product.name} ha sido añadido a tu carrito de reservas.`);
         }
     }
+    
+    // Remove product from cart
+    function removeFromCart(productId) {
+        if (cart[productId]) {
+            const productName = cart[productId].name;
+            delete cart[productId];
+            updateCartDisplay();
+            alert(`${productName} ha sido eliminado del carrito.`);
+        }
+    }
 
     // Update cart display
     function updateCartDisplay() {
@@ -124,7 +134,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const listItem = document.createElement('li');
             listItem.innerHTML = `
                 <span>${item.name}</span>
-                <span>$${parseFloat(item.price).toFixed(2)}</span>
+                <div style="display: flex; align-items: center; gap: 1px;">
+                    <span>$${parseFloat(item.price).toFixed(2)}</span>
+                    <button 
+  class="remove-item-btn" 
+  data-product-id="${productId}" 
+  style="
+    background: #dc3545; 
+    color: white; 
+    border: none; 
+    padding: 0 6px; /* menos padding horizontal */
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 0.7em; 
+    width: auto; /* asegura que el ancho sea automático */
+    min-width: 20px; /* para que no sea demasiado pequeño */
+    height: 20px; /* tamaño fijo para altura */
+    line-height: 18px; /* alinea la X verticalmente */
+    text-align: center; 
+    display: inline-block; /* o inline-flex */
+  "
+>
+  ✕
+</button>
+
+                </div>
             `;
             cartItemsList.appendChild(listItem);
         }
@@ -135,6 +169,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (count === 0) {
             cartItemsList.innerHTML = '<li>No hay productos en el carrito.</li>';
         }
+
+        // Add event listeners to remove buttons
+        document.querySelectorAll('.remove-item-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const productId = e.target.dataset.productId;
+                removeFromCart(productId);
+            });
+        });
     }
 
     // Go to reserve button click
