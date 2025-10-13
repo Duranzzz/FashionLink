@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 productCard.innerHTML = `
                     <img src="${product.image_url}" alt="${product.name}">
                     <h4>${product.name}</h4>
-                    <p>$${parseFloat(product.price).toFixed(2)}</p>
+                    <p>Bs${parseFloat(product.price).toFixed(2)}</p>
                     <button class="reserve-button" data-product-id="${product.id}">Reservar</button>
                 `;
                 carousel.appendChild(productCard);
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             listItem.innerHTML = `
                 <span>${item.name}</span>
                 <div style="display: flex; align-items: center; gap: 1px;">
-                    <span>$${parseFloat(item.price).toFixed(2)}</span>
+                    <span>Bs${parseFloat(item.price).toFixed(2)}</span>
                     <button 
   class="remove-item-btn" 
   data-product-id="${productId}" 
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         message += `Teléfono: ${reservationDetails[0].customer_phone}\n\n`;
         message += `Productos Reservados:\n`;
         reservationDetails.forEach(item => {
-            message += `- ${item.product_name} ($${parseFloat(item.price).toFixed(2)})\n`;
+            message += `- ${item.product_name} (Bs${parseFloat(item.price).toFixed(2)})\n`;
         });
         if (reservationDetails[0].additional_notes) {
             message += `\nNotas Adicionales: ${reservationDetails[0].additional_notes}\n`;
