@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="login-container">
-        <h2>Admin Login</h2>
+        <h2>ACCESO DE ADMINISTRADOR</h2>
         <form action="index.php" method="POST">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required>
