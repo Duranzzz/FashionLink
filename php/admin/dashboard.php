@@ -2,7 +2,19 @@
 require_once("auth.php");
 requireAdminLogin();
 
+// OBTENER CATEGORÍAS DESDE LA BASE DE DATOS
+require_once("../../php/config.php");
+$categories = [];
+$sql_categories = "SELECT DISTINCT category FROM products ORDER BY category";
+$result_categories = $conn->query($sql_categories);
+if ($result_categories->num_rows > 0) {
+    while($row = $result_categories->fetch_assoc()) {
+        $categories[] = $row['category'];
+    }
+}
+
 if (isset($_GET["logout"])) {
+    $conn->close();
     logoutAdmin();
 }
 ?>
@@ -313,12 +325,11 @@ if (isset($_GET["logout"])) {
                     <label for="product-category">Categoría:</label>
                     <select id="product-category" name="category" required>
                         <option value="">Seleccionar categoría</option>
-                        <option value="Camisas">Camisas</option>
-                        <option value="Pantalones">Pantalones</option>
-                        <option value="Vestidos">Vestidos</option>
-                        <option value="Chaquetas">Chaquetas</option>
-                        <option value="Zapatos">Zapatos</option>
-                        <option value="Accesorios">Accesorios</option>
+                        <?php foreach($categories as $cat): ?>
+                            <option value="<?php echo htmlspecialchars($cat); ?>">
+                                <?php echo htmlspecialchars($cat); ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -396,7 +407,7 @@ if (isset($_GET["logout"])) {
                     <td>${product.id}</td>
                     <td><img src="${imgSrc}" alt="${product.name}" onerror="this.src=\'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yMCAyMEg0MFY0MEgyMFYyMFoiIGZpbGw9IiNEMUQ1REIiLz4KPC9zdmc+\'"></td>
                     <td>${product.name}</td>
-                    <td>$${parseFloat(product.price).toFixed(2)}</td>
+                    <td>Bs${parseFloat(product.price).toFixed(2)}</td>
                     <td>${product.category}</td>
                     <td>${product.stock}</td>
                     <td>
